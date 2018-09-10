@@ -1,12 +1,12 @@
 <?php
 
-namespace AkiyamaSM\LaravelNovaConfiguration;
+namespace Inani\LaravelNovaConfiguration;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use AkiyamaSM\LaravelNovaConfiguration\Http\Middleware\Authorize;
+use Inani\LaravelNovaConfiguration\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
 {

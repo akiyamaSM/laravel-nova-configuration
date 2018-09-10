@@ -1,5 +1,5 @@
 {
-    "name": "akiyamaSM/laravel-nova-configuration",
+    "name": "inani/laravel-nova-configuration",
     "description": "A Laravel Nova tool.",
     "keywords": [
         "laravel",
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "AkiyamaSM\\LaravelNovaConfiguration\\": "src/"
+            "Inani\\LaravelNovaConfiguration\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AkiyamaSM\\LaravelNovaConfiguration\\ToolServiceProvider"
+                "Inani\\LaravelNovaConfiguration\\ToolServiceProvider"
             ]
         }
     },

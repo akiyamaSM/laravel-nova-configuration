@@ -1,8 +1,8 @@
 <?php
 
-namespace AkiyamaSM\LaravelNovaConfiguration\Http\Middleware;
+namespace Inani\LaravelNovaConfiguration\Http\Middleware;
 
-use AkiyamaSM\LaravelNovaConfiguration\LaravelNovaConfiguration;
+use Inani\LaravelNovaConfiguration\LaravelNovaConfiguration;
 
 class Authorize
 {
