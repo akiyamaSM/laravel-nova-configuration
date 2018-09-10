@@ -1,12 +1,10 @@
 <?php
 
-namespace Inani\LaravelNovaConfiguration\Helpers;
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLaravelNovaConfigurationTable extends Migration
+class CreateLaravelNovaConfigurationsTable extends Migration
 {
     /**
      * Run the migrations.
