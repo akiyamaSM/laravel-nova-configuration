@@ -1,8 +1,10 @@
 <template>
   <div>
-      <div class="configuration" v-for="(configuration, index) in configurations">
-        {{ configuration.label }}
-      </div>
+      <ul>
+          <li class="configuration" v-for="(configuration, index) in configurations" :key="index">
+              {{ configuration.value }}
+          </li>
+      </ul>
   </div>
 </template>
 
