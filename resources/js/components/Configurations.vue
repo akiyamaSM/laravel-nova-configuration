@@ -1,8 +1,10 @@
 <template>
   <div>
+      <heading class="mb-6">Laravel Nova Configuration</heading>
       <ul>
           <li class="configuration" v-for="(configuration, index) in configurations" :key="index">
               {{ configuration.value }}
+              <a href="#" @click.prevent="editConfiguration(configuration)">Edit Me</a>
           </li>
       </ul>
   </div>
@@ -10,8 +12,22 @@
 
 <script>
 export default {
-    name: 'list-configurations',
-    props: ['configurations']
+    mounted() {
+        axios.get('/nova-vendor/laravel-nova-configuration/getAllConfigurations')
+            .then(response => {
+                this.configurations = response.data
+            }).catch(error => console.log(error))
+    },
+    data() {
+        return {
+            configurations : ''
+        }
+    },
+    methods:{
+        editConfiguration(configuration){
+            this.$router.push({ name: 'laravel-nova-configuration-edit', params: {'id': configuration.id}})
+        }
+    }
 }
 </script>
 

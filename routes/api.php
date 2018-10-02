@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
  Route::get('/getAllConfigurations', function () {
         return \Inani\LaravelNovaConfiguration\Helpers\Configuration::all();
  });
+
+ Route::get('/configurations/{configuration}', function(\Inani\LaravelNovaConfiguration\Helpers\Configuration $configuration){
+     return $configuration;
+ });
