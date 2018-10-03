@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Configuration extends Model
 {
+    public $timestamps = false;
 
     protected $table = 'laravel_nova_configurations';
 
@@ -35,13 +36,13 @@ class Configuration extends Model
     public static function set($key, $value)
     {
         $line = self::getElementByKey($key);
-
         if(is_null($line)){
             $line = new self();
             $line->key = $key;
         }
 
         $line->value = $value;
+        $line->save();
 
         return true;
     }

@@ -8,7 +8,7 @@
                     <p class="text-sm leading-normal text-80 italic"></p>
                 </div>
                 <div class="w-1/2 px-8 py-6">
-                    <input id="name" dusk="name" placeholder="Name" type="text" class="w-full form-control form-input form-input-bordered" :value="configuration.key">
+                    <input id="name" dusk="name" placeholder="Name" type="text" class="w-full form-control form-input form-input-bordered" v-model="configuration.key">
                 </div>
             </div>
             <div class="flex border-b border-40">
@@ -17,7 +17,7 @@
                     <p class="text-sm leading-normal text-80 italic"></p>
                 </div>
                 <div class="w-1/2 px-8 py-6">
-                    <input id="value" dusk="value" placeholder="value" type="text" class="w-full form-control form-input form-input-bordered" :value="configuration.value">
+                    <input id="value" dusk="value" placeholder="value" type="text" class="w-full form-control form-input form-input-bordered" v-model="configuration.value">
                 </div>
             </div>
             <div class="bg-30 flex px-8 py-4">
@@ -46,7 +46,11 @@ export default {
     },
     methods:{
         update(){
-            //axios('')
+            axios.post('/nova-vendor/laravel-nova-configuration/configurations/' + this.id, {
+                key : this.configuration.key,
+                value : this.configuration.value
+            }).then(response => console.log(response))
+                .catch( error => console.log(error))
             console.log('here to edit')
             this.$router.push({ name: 'laravel-nova-configuration'})
         }

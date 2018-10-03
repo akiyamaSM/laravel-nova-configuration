@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Inani\LaravelNovaConfiguration\Helpers\Configuration;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
  Route::get('/getAllConfigurations', function () {
-        return \Inani\LaravelNovaConfiguration\Helpers\Configuration::all();
+        return Configuration::all();
  });
 
- Route::get('/configurations/{configuration}', function(\Inani\LaravelNovaConfiguration\Helpers\Configuration $configuration){
+ Route::get('/configurations/{configuration}', function(Configuration $configuration){
      return $configuration;
+ });
+
+ Route::post('/configurations/{configuration}', function(Request $request, Configuration $configuration){
+     $return = Configuration::set(
+        $request->get('key'),
+        $request->get('value')
+    );
+    return response()->json([],
+        $return ? 200 : 203
+    );
  });
