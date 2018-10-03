@@ -47,12 +47,19 @@ export default {
     methods:{
         update(){
             axios.post('/nova-vendor/laravel-nova-configuration/configurations/' + this.id, {
+                id : this.configuration.id,
                 key : this.configuration.key,
                 value : this.configuration.value
-            }).then(response => console.log(response))
-                .catch( error => console.log(error))
-            console.log('here to edit')
-            this.$router.push({ name: 'laravel-nova-configuration'})
+            }).then(response => {
+                this.$router.push({ name: 'laravel-nova-configuration'})
+            })
+            .catch( error => {
+                let errors = error.response.data.errors
+
+                Object.keys(errors).forEach( field => {
+                    console.log(errors[field][0])
+                })
+            })
         }
     }
 }

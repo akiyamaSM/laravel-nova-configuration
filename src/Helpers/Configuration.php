@@ -57,4 +57,27 @@ class Configuration extends Model
     {
         return self::where('key', $key)->first();
     }
+
+    /**
+     * Update By ID
+     *
+     * @param $id
+     * @param $key
+     * @param $value
+     * @return bool
+     */
+    public static function setById($id, $key, $value)
+    {
+        $configuration = self::find($id);
+
+        if(is_null($configuration)){
+            return false;
+        }
+        $configuration->key = $key;
+        $configuration->value = $value;
+
+        $configuration->save();
+
+        return true;
+    }
 }
