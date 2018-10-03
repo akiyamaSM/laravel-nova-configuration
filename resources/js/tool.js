@@ -7,8 +7,9 @@ Nova.booting((Vue, router) => {
         },
         {
             name: 'laravel-nova-configuration-edit',
-            path: '/laravel-nova-configuration/edit/:id',
+            path: '/laravel-nova-configuration/:id/edit',
             component: require('./components/EditConfiguration'),
+            props: true
         },
     ])
 })

@@ -25,7 +25,7 @@ export default {
     },
     methods:{
         editConfiguration(configuration){
-            this.$router.push({ name: 'laravel-nova-configuration-edit', params: {'id': configuration.id}})
+            this.$router.push({ name: 'laravel-nova-configuration-edit', params: {'id': configuration.id, 'configuration': configuration}})
         }
     }
 }
