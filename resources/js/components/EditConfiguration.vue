@@ -51,13 +51,22 @@ export default {
                 key : this.configuration.key,
                 value : this.configuration.value
             }).then(response => {
+                this.$toasted.show("The "+ this.configuration.key + " key has been updated successfully", {
+                    position: 'top-right',
+                    type: 'success',
+                    duration: 2000
+                });
                 this.$router.push({ name: 'laravel-nova-configuration'})
             })
             .catch( error => {
                 let errors = error.response.data.errors
 
                 Object.keys(errors).forEach( field => {
-                    console.log(errors[field][0])
+                    this.$toasted.show(errors[field][0], {
+                        type: 'error',
+                        position: 'top-right',
+                        duration: 3000
+                    });
                 })
             })
         }

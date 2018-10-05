@@ -16,7 +16,7 @@ export default {
         axios.get('/nova-vendor/laravel-nova-configuration/getAllConfigurations')
             .then(response => {
                 this.configurations = response.data
-            }).catch(error => console.log(error))
+            }).catch(error => this.$toasted.show(error, {type: 'error'}))
     },
     data() {
         return {
