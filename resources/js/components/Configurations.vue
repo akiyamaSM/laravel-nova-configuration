@@ -13,31 +13,10 @@
           </span>
       </div>
       <div class="card relative">
-          <div class="py-3 flex items-center border-b border-50">
-              <div class="px-3">
-                  <div class="dropdown relative" dusk="select-all-dropdown">
-                      <a class="dropdown-trigger h-9 flex items-center cursor-pointer select-none">
-                          <div class="checkbox select-none rounded">
-                              <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="block"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="checkbox-off"><g id="b-link" fill="#FFF" fill-rule="nonzero"><rect id="b" width="20" height="20" rx="4"></rect></g><rect id="Rectangle-path" width="19" height="19" x=".5" y=".5" stroke="#CCD4DB" rx="4"></rect></g></g></svg>
-                          </div>
-                          <svg width="10px" height="6px" viewBox="0 0 10 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="ml-2"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="04-user" transform="translate(-385.000000, -573.000000)" fill="#35393C" fill-rule="nonzero"><path d="M393.292893,573.292893 C393.683418,572.902369 394.316582,572.902369 394.707107,573.292893 C395.097631,573.683418 395.097631,574.316582 394.707107,574.707107 L390.707107,578.707107 C390.316582,579.097631 389.683418,579.097631 389.292893,578.707107 L385.292893,574.707107 C384.902369,574.316582 384.902369,573.683418 385.292893,573.292893 C385.683418,572.902369 386.316582,572.902369 386.707107,573.292893 L390,576.585786 L393.292893,573.292893 Z" id="Path-2-Copy"></path></g></g>
-                          </svg>
-                      </a> <!---->
-                  </div>
-              </div>
-              <div class="flex items-center ml-auto px-3"><!----> <!---->
-                  <div class="dropdown relative bg-30 hover:bg-40 rounded" data-testid="filter-selector" dusk="filter-selector">
-                      <a class="dropdown-trigger h-9 flex items-center cursor-pointer select-none px-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-labelledby="filter" role="presentation" class="fill-current text-80"><path fill-rule="nonzero" d="M.293 5.707A1 1 0 0 1 0 4.999V1A1 1 0 0 1 1 0h18a1 1 0 0 1 1 1v4a1 1 0 0 1-.293.707L13 12.413v2.585a1 1 0 0 1-.293.708l-4 4c-.63.629-1.707.183-1.707-.708v-6.585L.293 5.707zM2 2v2.585l6.707 6.707a1 1 0 0 1 .293.707v4.585l2-2V12a1 1 0 0 1 .293-.707L18 4.585V2H2z"></path></svg> <svg width="10px" height="6px" viewBox="0 0 10 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="ml-2"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="04-user" transform="translate(-385.000000, -573.000000)" fill="#35393C" fill-rule="nonzero"><path d="M393.292893,573.292893 C393.683418,572.902369 394.316582,572.902369 394.707107,573.292893 C395.097631,573.683418 395.097631,574.316582 394.707107,574.707107 L390.707107,578.707107 C390.316582,579.097631 389.683418,579.097631 389.292893,578.707107 L385.292893,574.707107 C384.902369,574.316582 384.902369,573.683418 385.292893,573.292893 C385.683418,572.902369 386.316582,572.902369 386.707107,573.292893 L390,576.585786 L393.292893,573.292893 Z" id="Path-2-Copy"></path></g></g></svg>
-                      </a> <!---->
-                  </div> <!---->
-              </div>
-          </div>
           <div class="overflow-hidden overflow-x-auto relative">
               <table cellpadding="0" cellspacing="0" data-testid="resource-table" class="table w-full">
                   <thead>
                   <tr>
-                      <th class="w-16">&nbsp;</th>
                       <th class="text-left">
                           <span dusk="sort-id" class="cursor-pointer inline-flex items-center">
                                 ID
@@ -62,23 +41,15 @@
                       <th>&nbsp;</th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody v-for="(configuration, index) in configurations" :key="index">
                     <tr dusk="id-row">
-                        <td>
-                            <div class="flex items-center" data-testid="users-items-0-checkbox" dusk="2-checkbox">
-                                <div tabindex="0" role="checkbox" class="checkbox select-none rounded">
-                                    <input type="checkbox" class="hidden"> <div class="check"><svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="block"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="checkbox-off"><g id="b-link" fill="#FFF" fill-rule="nonzero"><rect id="b" width="20" height="20" rx="4"></rect></g><rect id="Rectangle-path" width="19" height="19" x=".5" y=".5" stroke="#CCD4DB" rx="4"></rect></g></g></svg>
-                                </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>1</td>
+                        <td>{{ configuration.id }}</td>
                         <td></td>
                         <td>
-                            <span class="whitespace-no-wrap text-left" via-resource="" via-resource-id="">2</span>
+                            <span class="whitespace-no-wrap text-left" via-resource="" via-resource-id="">{{ configuration.key }}</span>
                         </td>
                         <td>
-                            <span class="whitespace-no-wrap text-left" via-resource="" via-resource-id="">2</span>
+                            <span class="whitespace-no-wrap text-left" via-resource="" via-resource-id="">{{ configuration.value }}</span>
                         </td>
                         <td class="td-fit text-right pr-6">
                             <span>
@@ -100,12 +71,6 @@
               </table>
           </div>
       </div>
-      <ul>
-          <li class="configuration" v-for="(configuration, index) in configurations" :key="index">
-              {{ configuration.value }}
-              <a href="#" @click.prevent="editConfiguration(configuration)">Edit Me</a>
-          </li>
-      </ul>
   </div>
 </template>
 
