@@ -1,6 +1,7 @@
 # laravel-nova-configuration
 
 Use Configuration inputs instead of the env/config files. Good news for the clients!
+![nova-conf](https://user-images.githubusercontent.com/12276076/46549393-bb3b2f80-c8c9-11e8-9b43-b217dc4879e0.png)
 
 ## Requirements
 
