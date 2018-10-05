@@ -25,6 +25,19 @@ use Inani\LaravelNovaConfiguration\Http\UpdateConfigurationRequest;
      return $configuration;
  });
 
+Route::delete('/configurations/{configuration}', function(Configuration $configuration){
+    $isDeleted = $configuration->delete();
+    $status = 201;
+    $data = [];
+    if(! is_null($isDeleted)){
+        $status = 200;
+        $data = Configuration::all();
+    }
+    return response()->json([
+        $data
+    ], $status);
+});
+
 Route::post('configurations/create', function (CreateConfigurationRequest $request) {
     $data = Configuration::set(
         $request->get('key'),
@@ -35,7 +48,7 @@ Route::post('configurations/create', function (CreateConfigurationRequest $reque
     );
 });
 
- Route::post('/configurations/{configuration}', function(UpdateConfigurationRequest $request, Configuration $configuration){
+ Route::patch('/configurations/{configuration}', function(UpdateConfigurationRequest $request, Configuration $configuration){
      Configuration::setById(
         $request->get('id'),
         $request->get('key'),

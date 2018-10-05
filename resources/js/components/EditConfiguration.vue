@@ -48,7 +48,7 @@ export default {
     },
     methods:{
         update(){
-            axios.post('/nova-vendor/laravel-nova-configuration/configurations/' + this.id, {
+            axios.patch('/nova-vendor/laravel-nova-configuration/configurations/' + this.id, {
                 id : this.configuration.id,
                 key : this.configuration.key,
                 value : this.configuration.value

@@ -115,7 +115,21 @@ export default {
             this.showModal = true
         },
         deleteConfiguration(){
-            console.log("Delete Conf with id = " + this.id_delete)
+            axios.delete('/nova-vendor/laravel-nova-configuration/configurations/'+ this.id_delete)
+                .then(response => {
+                    this.configurations = response.data[0]
+                    this.$toasted.show("The configuration has been updated successfully", {
+                        position: 'top-right',
+                        type: 'success',
+                        duration: 2000
+                    });
+                }).catch(error => {
+                    this.$toasted.show(error, {
+                        type: 'error',
+                        position: 'top-right',
+                        duration: 3000
+                    });
+                });
             this.resetDelete()
         },
         resetDelete(){
