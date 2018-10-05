@@ -4,10 +4,10 @@
       <div class="flex justify-between">
           <div class="relative h-9 mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-labelledby="search" role="presentation" class="fill-current absolute search-icon-center ml-3 text-70"><path fill-rule="nonzero" d="M14.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387a8 8 0 1 1 1.414-1.414zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path></svg>
-              <input data-testid="search-input" dusk="search" placeholder="Search" type="search" class="appearance-none form-control form-input w-search pl-search">
+              <input data-testid="search-input" dusk="search" placeholder="Search" type="search" class="appearance-none form-control form-input w-search pl-search" v-model="search">
           </div>
           <span class="ml-auto mb-6">
-              <button class="btn btn-default btn-primary" dusk="create-button">
+              <button class="btn btn-default btn-primary" dusk="create-button" @click="createConfiguration">
                     Create Configuration
               </button>
           </span>
@@ -41,7 +41,7 @@
                       <th>&nbsp;</th>
                   </tr>
                   </thead>
-                  <tbody v-for="(configuration, index) in configurations" :key="index">
+                  <tbody v-for="(configuration, index) in filtered" :key="index">
                     <tr dusk="id-row">
                         <td>{{ configuration.id }}</td>
                         <td></td>
@@ -72,6 +72,15 @@
 <script>
 
 export default {
+    computed:{
+      filtered: function(){
+          if( this.search === ''){
+              return this.configurations;
+          }
+
+          return this.configurations.filter( config =>  this.isInKey(config, 'key') || this.isInKey(config, 'value'))
+      }
+    },
     mounted() {
         axios.get('/nova-vendor/laravel-nova-configuration/getAllConfigurations')
             .then(response => {
@@ -80,12 +89,19 @@ export default {
     },
     data() {
         return {
-            configurations : ''
+            search: '',
+            configurations : []
         }
     },
     methods:{
         editConfiguration(configuration){
             this.$router.push({ name: 'laravel-nova-configuration-edit', params: {'id': configuration.id, 'configuration': configuration}})
+        },
+        createConfiguration(){
+            this.$router.push({ name: 'laravel-nova-configuration-create'})
+        },
+        isInKey(conf, field){
+            return conf[field].toLowerCase().search(this.search.toLowerCase()) !== -1
         }
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inani\LaravelNovaConfiguration\Helpers\Configuration;
+use Inani\LaravelNovaConfiguration\Http\CreateConfigurationRequest;
 use Inani\LaravelNovaConfiguration\Http\UpdateConfigurationRequest;
 
 /*
@@ -24,6 +25,16 @@ use Inani\LaravelNovaConfiguration\Http\UpdateConfigurationRequest;
      return $configuration;
  });
 
+Route::post('configurations/create', function (CreateConfigurationRequest $request) {
+    $data = Configuration::set(
+        $request->get('key'),
+        $request->get('value')
+    );
+    return response()->json([],
+        $data? 200 : 402
+    );
+});
+
  Route::post('/configurations/{configuration}', function(UpdateConfigurationRequest $request, Configuration $configuration){
      Configuration::setById(
         $request->get('id'),
@@ -34,3 +45,4 @@ use Inani\LaravelNovaConfiguration\Http\UpdateConfigurationRequest;
          200
     );
  });
+
