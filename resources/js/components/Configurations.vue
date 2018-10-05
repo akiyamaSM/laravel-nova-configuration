@@ -57,7 +57,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-labelledby="edit" role="presentation" class="fill-current"><path d="M4.3 10.3l10-10a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.4l-10 10a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 .3-.7zM6 14h2.59l9-9L15 2.41l-9 9V14zm10-2a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h6a1 1 0 1 1 0 2H2v14h14v-6z"></path></svg>
                                 </a>
                             </span>
-                            <button data-testid="users-items-0-delete-button" dusk="2-delete-button" title="Delete" class="appearance-none cursor-pointer text-70 hover:text-primary mr-3">
+                            <button data-testid="users-items-0-delete-button" dusk="2-delete-button" title="Delete" class="appearance-none cursor-pointer text-70 hover:text-primary mr-3" @click="askToDelete(configuration)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-labelledby="delete" role="presentation" class="fill-current"><path fill-rule="nonzero" d="M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"></path></svg>
                             </button>
                         </td>
@@ -66,12 +66,17 @@
               </table>
           </div>
       </div>
+      <ConfirmDelete v-if="showModal" @close="resetDelete" @confirm="deleteConfiguration"></ConfirmDelete>
   </div>
 </template>
 
 <script>
+import ConfirmDelete from './ConfirmDelete'
 
 export default {
+    components: {
+        ConfirmDelete,
+    },
     computed:{
       filtered: function(){
           if( this.search === ''){
@@ -90,6 +95,8 @@ export default {
     data() {
         return {
             search: '',
+            id_delete: '',
+            showModal: false,
             configurations : []
         }
     },
@@ -102,6 +109,18 @@ export default {
         },
         isInKey(conf, field){
             return conf[field].toLowerCase().search(this.search.toLowerCase()) !== -1
+        },
+        askToDelete(configuration){
+            this.id_delete = configuration.id
+            this.showModal = true
+        },
+        deleteConfiguration(){
+            console.log("Delete Conf with id = " + this.id_delete)
+            this.resetDelete()
+        },
+        resetDelete(){
+            this.id_delete = ''
+            this.showModal = false
         }
     }
 }
