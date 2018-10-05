@@ -27,14 +27,20 @@
                     </button>
                 </div>
             </form>
+            <BackHome></BackHome>
         </div>
     </div>
 
 </template>
 
 <script>
+    import BackHome from './BackHome'
+
     export default {
         name: 'create-configuration',
+        components:{
+            BackHome
+        },
         data(){
             return{
                 configuration: {},

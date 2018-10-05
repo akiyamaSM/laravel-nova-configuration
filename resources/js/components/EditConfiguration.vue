@@ -21,20 +21,28 @@
                         <input id="value" dusk="value" placeholder="value" type="text" class="w-full form-control form-input form-input-bordered" v-model="configuration.value">
                     </div>
                 </div>
+
                 <div class="bg-30 flex px-8 py-4">
                     <button dusk="update-button" class="ml-auto btn btn-default btn-primary mr-3">
                         Update Configuration
                     </button>
                 </div>
             </form>
+            <BackHome></BackHome>
         </div>
     </div>
 
 </template>
 
 <script>
+
+import BackHome from './BackHome'
+
 export default {
     name: 'edit-configuration',
+    components:{
+        BackHome
+    },
     props: ['id'],
     data(){
         return{
