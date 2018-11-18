@@ -18,11 +18,13 @@ class ToolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__. '/database/migrations/2018_10_10_000000_create_laravel_nova_configurations_table.php'
+            __DIR__ . '/database/migrations/2018_10_10_000000_create_laravel_nova_configurations_table.php'
             => base_path('database/migrations/2018_10_10_000000_create_laravel_nova_configurations_table.php'),
+
+            __DIR__ . '/resources/views/navigation.blade.php' => resource_path('views/vendor/laravel-nova-configuration'),
         ]);
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-nova-configuration');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-nova-configuration');
 
         $this->app->booted(function () {
             $this->routes();
@@ -45,8 +47,8 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/laravel-nova-configuration')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/laravel-nova-configuration')
+            ->group(__DIR__ . '/../routes/api.php');
     }
 
     /**

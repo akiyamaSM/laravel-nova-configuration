@@ -63,4 +63,13 @@ $value = Configuration::get('API_GOOGLE');
 
 ```
 
+#### Updating the sidebar bar label
+
+If you want to update the display name of the tool in the Laravel Nova sidebar, You can simply update the `sidebar-label` in the following file 
+
+```
+resources/views/laravel-nova-configuration/navigation.blade.php
+```
+ 
+
 Enjoy coding.
