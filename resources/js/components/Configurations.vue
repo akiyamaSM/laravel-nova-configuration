@@ -43,10 +43,10 @@
                         <td>{{ configuration.id }}</td>
                         <td></td>
                         <td>
-                            <span class="whitespace-no-wrap text-left" via-resource="" via-resource-id="">{{ configuration.key }}</span>
+                            <span class="whitespace-no-wrap text-left">{{ configuration.key }}</span>
                         </td>
                         <td>
-                            <span class="whitespace-no-wrap text-left" via-resource="" via-resource-id="">{{ configuration.value }}</span>
+                            <span class="whitespace-no-wrap text-left">{{ configuration.value }}</span>
                         </td>
                         <td class="td-fit text-right pr-6">
                             <span>
@@ -99,22 +99,24 @@ export default {
     },
     methods:{
         editConfiguration(configuration){
-            this.$router.push({ name: 'laravel-nova-configuration-edit', params: {'id': configuration.id, 'configuration': configuration}})
+            this.$router.push({ name: 'laravel-nova-configuration-edit', params: {'id': configuration.id, 'configuration': configuration}});
         },
         createConfiguration(){
-            this.$router.push({ name: 'laravel-nova-configuration-create'})
+            this.$router.push({ name: 'laravel-nova-configuration-create'});
         },
         isInKey(conf, field){
-            return conf[field].toLowerCase().search(this.search.toLowerCase()) !== -1
+            return conf[field].toLowerCase().search(this.search.toLowerCase()) !== -1;
         },
         askToDelete(configuration){
-            this.id_delete = configuration.id
-            this.showModal = true
+            this.id_delete = configuration.id;
+            this.showModal = true;
         },
         deleteConfiguration(){
             axios.delete('/nova-vendor/laravel-nova-configuration/configurations/'+ this.id_delete)
                 .then(response => {
-                    this.configurations = response.data[0]
+                    this.configurations = this.configurations.filter((config) => {
+                        return config.id !== response.data.id;
+                    });
                     this.$toasted.show("The configuration has been updated successfully", {
                         position: 'top-right',
                         type: 'success',
@@ -127,11 +129,11 @@ export default {
                         duration: 3000
                     });
                 });
-            this.resetDelete()
+            this.resetDelete();
         },
         resetDelete(){
-            this.id_delete = ''
-            this.showModal = false
+            this.id_delete = '';
+            this.showModal = false;
         }
     }
 }

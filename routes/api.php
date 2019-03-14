@@ -17,45 +17,13 @@ use Inani\LaravelNovaConfiguration\Http\UpdateConfigurationRequest;
 |
 */
 
- Route::get('/getAllConfigurations', function () {
-        return Configuration::all();
- });
+ Route::get('/getAllConfigurations', '\Inani\LaravelNovaConfiguration\Http\ConfigurationController@index');
 
- Route::get('/configurations/{configuration}', function(Configuration $configuration){
-     return $configuration;
- });
+ Route::get('/configurations/{configuration}', '\Inani\LaravelNovaConfiguration\Http\ConfigurationController@show');
 
-Route::delete('/configurations/{configuration}', function(Configuration $configuration){
-    $isDeleted = $configuration->delete();
-    $status = 201;
-    $data = [];
-    if(! is_null($isDeleted)){
-        $status = 200;
-        $data = Configuration::all();
-    }
-    return response()->json([
-        $data
-    ], $status);
-});
+Route::delete('/configurations/{configuration}', '\Inani\LaravelNovaConfiguration\Http\ConfigurationController@delete');
 
-Route::post('configurations/create', function (CreateConfigurationRequest $request) {
-    $data = Configuration::set(
-        $request->get('key'),
-        $request->get('value')
-    );
-    return response()->json([],
-        $data? 200 : 402
-    );
-});
+Route::post('configurations/create', '\Inani\LaravelNovaConfiguration\Http\ConfigurationController@save');
 
- Route::patch('/configurations/{configuration}', function(UpdateConfigurationRequest $request, Configuration $configuration){
-     Configuration::setById(
-        $request->get('id'),
-        $request->get('key'),
-        $request->get('value')
-    );
-    return response()->json([],
-         200
-    );
- });
+ Route::patch('/configurations', '\Inani\LaravelNovaConfiguration\Http\ConfigurationController@update');
 
