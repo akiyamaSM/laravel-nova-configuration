@@ -15,12 +15,12 @@ class Configuration extends Model
      * @param $key
      * @return mixed
      */
-    public static function get($key)
+    public static function get($key, $default = null)
     {
         $line =  self::getElementByKey($key);
 
         if(is_null($line)){
-            return null;
+            return $default;
         }
 
         return $line->value;
