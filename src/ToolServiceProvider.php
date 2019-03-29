@@ -21,7 +21,7 @@ class ToolServiceProvider extends ServiceProvider
             __DIR__ . '/database/migrations/2018_10_10_000000_create_laravel_nova_configurations_table.php'
             => base_path('database/migrations/2018_10_10_000000_create_laravel_nova_configurations_table.php'),
 
-            __DIR__ . '/resources/views/navigation.blade.php' => resource_path('views/vendor/laravel-nova-configuration'),
+            __DIR__ . '/../resources/views/navigation.blade.php' => resource_path('views/vendor/laravel-nova-configuration'),
         ]);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-nova-configuration');
