@@ -54,13 +54,13 @@ And then just you have to manipulate the settings.
 
 
 ```php
-
-// Get the value of the API_GOOGLE key, null if it doesn't exist
-
 use Inani\LaravelNovaConfiguration\Helpers\Configuration;
 
+// Get the value of the API_GOOGLE key, null if it doesn't exist
 $value = Configuration::get('API_GOOGLE');
 
+// Get the value of the FOO key, 'BAR' if it doesn't exist
+$value = Configuration::get('FOO', 'BAR);
 ```
 
 #### Updating the sidebar bar label
